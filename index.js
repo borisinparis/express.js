@@ -4,28 +4,29 @@ const port = 3000;
 app.use(express.json());
 
 const users = [
-    { firstname: "omd" },
-    { secondname: "tsamts" },
+    { firstname: "omd", secondname: "tsamts" },
 ];
 
 
 app.get('/users', (req, res) => {
-  res.send(users);
+    res.send(users);
 });
 
 app.post('/users', (req, res) => {
-    
-    const { firstname, secondname } = req.body; 
+
+    const { firstname, secondname } = req.body;
     users.push({ firstname, secondname });
     res.send("New user added!");
 });
 
 app.delete('/users', (req, res) => {
     const { firstname } = req.body;
-    const updatedUsers = users.filter(user => !user.firstname.includes(firstname));
-    let users = updatedUsers
-  
-  });
+
+
+    const updatedUsers = users.filter(user => user.firstname.toLowerCase() !== firstname.toLowerCase());
+    res.send(updatedUsers)
+
+});
 
 app.put('/users', (req, res) => {
     if (users.length > 0) {
