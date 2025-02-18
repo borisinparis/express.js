@@ -1,3 +1,4 @@
+import fs from 'fs'
 
 export const CreateUser = (req,res) => {
    const rawUserData = fs.readFileSync('src/db/users.json')
