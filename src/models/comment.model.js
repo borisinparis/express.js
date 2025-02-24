@@ -3,6 +3,19 @@ import mongoose from "mongoose";
 //collection ==> table
 // cluster dotor => database ternii dotor => collection
 const usersSchema = new mongoose.Schema({
-  name: { type: String, require: true },
+  email: { type: String, require: true },
+  password: { type: String, require: true },
+  phoneNumber: { type: String, require: false },
+  address: { type: String, require: false },
+  orderFoods: [
+    {
+      name: String,
+      type: {
+        type: { type: String },
+      },
+    },
+  ],
+  isVerified: { type: Boolean, require: false, default: false },
+  createAt: { type: Date, require: Date.now },
 });
 export const Users = mongoose.model("users", usersSchema);

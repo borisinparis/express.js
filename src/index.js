@@ -1,6 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { Users } from "./models/comment.model.js";
+import { ValidateEmail } from "./middlewares/users/valiadate-user-email.js";
+
+// import { Users } from "./models/comment.model.js";
+// import { validateId } from "./middlewares/users/validate-user-id.js";
 
 // bd connect hiiih arga
 const url =
@@ -18,16 +23,16 @@ const connectDb = async () => {
 connectDb();
 
 const app = express();
-
-const port = 3000;
+const port = 4000;
+app.use(cors());
 app.use(express.json());
 
 // get ==> read db ass awchrich haruulah
 // post ==> post bol create hiih
 //"db url" - mongodb ===> connecter  ===> mongoose ===> server
-app.get("/users", async (req, res) => {
+app.get("/login", ValidateEmail, async (req, res) => {
   try {
-    const userData = await Users.find({});
+    const userData = await Users.find();
     res.send(userData).status(200);
   } catch (error) {
     console.log("erroor", error);
@@ -49,10 +54,11 @@ app.delete("/users", async (req, res) => {
 });
 
 app.post("/users", async (req, res) => {
-  const { name } = req.body;
+  const { email, password } = req.body;
   try {
     const newUser = await Users.create({
-      name,
+      email: email,
+      password: password,
     });
     res.send(newUser).status(200);
   } catch (error) {
