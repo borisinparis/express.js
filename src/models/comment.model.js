@@ -6,6 +6,12 @@ const usersSchema = new mongoose.Schema({
   email: { type: String, require: true },
   password: { type: String, require: true },
   phoneNumber: { type: String, require: false },
+  phoneNumber: {
+    type: String,
+    require: true,
+    enum: ["User", "Admin"],
+    default: "User",
+  },
   address: { type: String, require: false },
   orderFoods: [
     {
