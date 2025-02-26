@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import { UserRouter } from "./routers/users-routers.js";
+import { FoodsRouter } from "./routers/Food.routers.js";
 
 dotenv.config();
 
@@ -21,7 +22,9 @@ const app = express();
 const port = 4000;
 app.use(cors());
 app.use(express.json());
+
 app.use("/users", UserRouter);
+app.use("/foods", FoodsRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

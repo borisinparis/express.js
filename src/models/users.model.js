@@ -6,21 +6,13 @@ const usersSchema = new mongoose.Schema({
   email: { type: String, require: true },
   password: { type: String, require: true },
   phoneNumber: { type: String, require: false },
-  phoneNumber: {
+  address: { type: String, require: false },
+  role: {
     type: String,
     require: true,
-    enum: ["User", "Admin"],
-    default: "User",
+    enum: ["USER", "ADMIN"],
+    default: "USER",
   },
-  address: { type: String, require: false },
-  orderFoods: [
-    {
-      name: String,
-      type: {
-        type: { type: String },
-      },
-    },
-  ],
   isVerified: { type: Boolean, require: false, default: false },
   createAt: { type: Date, require: Date.now },
 });
