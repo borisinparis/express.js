@@ -10,8 +10,9 @@ export const validateEmail = async (req, res, next) => {
     console.log("mail bgaa uchir bolohgui");
   } else {
     console.log("bhqu bna");
-    next();
+    res.send("").status(200);
   }
+  next();
 };
 
 // password crypt
