@@ -1,12 +1,10 @@
 import express from "express";
 import { CreateUserController } from "../controller/users/CreateUser.controller.js";
 import { validateEmail } from "../middlewares/users/validateEmailMiddleWares.js";
-import { GetUserController } from "../controller/users/GetUser.controller.js";
 
 export const UserRouter = express.Router();
 
-UserRouter.post("/check", validateEmail);
-UserRouter.post("/", CreateUserController);
+UserRouter.post("/sign-up", validateEmail, CreateUserController);
 
 // import express from "express";
 // import { CreateUser } from "../controller/users/create.user.js";

@@ -14,6 +14,10 @@ export const validateEmail = async (req, res, next) => {
   }
   next();
 };
+// export const validatePassword = async (req,res,next) => {
+//   const {password} = req.body
+
+// }
 
 // password crypt
 // import bcrypt from "bcrypt";

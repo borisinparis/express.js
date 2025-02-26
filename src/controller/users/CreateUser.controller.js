@@ -11,7 +11,7 @@ export const CreateUserController = async (req, res) => {
       password: cryptPassword,
     });
     console.log(CreateUser);
-    res.json(CreateUser).status(200);
+    res.send(CreateUser).status(200);
   } catch (err) {
     res.send("error").status(400);
   }
