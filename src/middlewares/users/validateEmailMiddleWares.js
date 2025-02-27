@@ -3,16 +3,36 @@ import { Users } from "../../models/users.model.js";
 export const validateEmail = async (req, res, next) => {
   const { email } = req.body;
 
-  const userEmail = await Users.findOne({ email });
+  let validRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  if (userEmail) {
-    res.send(false).status(400);
-    console.log("mail bgaa uchir bolohgui");
+  if (
+    email.match(validRegex) &&
+    email.includes(".com") &&
+    email.includes("gmail")
+  ) {
+    const userEmail = await Users.findOne({ email: email });
+
+    if (userEmail) {
+      res
+        .status(400)
+        .json({
+          success: false,
+          message: "Found user with this email",
+        })
+        .send();
+    } else {
+      next();
+    }
   } else {
-    console.log("bhqu bna");
-    res.send("").status(200);
+    res
+      .status(400)
+      .json({
+        success: false,
+        message: "Email format required",
+      })
+      .send();
   }
-  next();
 };
 // export const validatePassword = async (req,res,next) => {
 //   const {password} = req.body

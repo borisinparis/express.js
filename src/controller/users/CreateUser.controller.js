@@ -5,14 +5,28 @@ export const CreateUserController = async (req, res) => {
   const { email, password } = req.body;
   const cryptPassword = bcrypt.hashSync(password, saltRounds);
 
+  console.log(email, password);
+
   try {
-    const CreateUser = await Users.create({
+    const createUser = await Users.create({
       email: email,
       password: cryptPassword,
     });
-    console.log(CreateUser);
-    res.send(CreateUser).status(200);
+
+    res
+      .status(200)
+      .json({
+        success: true,
+        user: createUser,
+      })
+      .send();
   } catch (err) {
-    res.send("error").status(400);
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Internal server errors",
+      })
+      .send();
   }
 };
