@@ -9,4 +9,4 @@ const foodSchema = new mongoose.Schema({
   category: { type: mongoose.Types.ObjectId, ref: "categories" },
   image: { type: String, require: false },
 });
-export const Users = mongoose.model("foods", foodSchema);
+export const Food = mongoose.model("foods", foodSchema);

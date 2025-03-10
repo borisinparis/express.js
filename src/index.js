@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { UserRouter } from "./routers/users-routers.js";
 import { LoginUserRouter } from "./routers/loginUsers.routers.js";
+import { FoodsRouter } from "./routers/food.routers.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use("/users", UserRouter);
 app.use("/users", LoginUserRouter);
+app.use("/food", FoodsRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
