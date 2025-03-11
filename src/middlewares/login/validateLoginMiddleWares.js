@@ -3,31 +3,40 @@ import bcrypt from "bcrypt";
 
 export const validateLogin = async (req, res, next) => {
   const { email, password } = req.body;
-  const userFound = Users.findOne(email);
+
   try {
+    const userFound = await Users.findOne({ email });
+
     if (userFound) {
       if (password) {
         const isMatch = await bcrypt.compare(password, userFound.password);
         if (isMatch) {
-          res
-            .status(400)
-            .json({
-              success: true,
-              user: userFound,
-            })
-            .send();
-          next();
+          return res.status(200).json({
+            success: true,
+            user: userFound,
+          });
+        } else {
+          return res.status(401).json({
+            success: false,
+            message: "Incorrect password",
+          });
         }
       } else {
-        res
-          .status(500)
-          .json({ success: false, message: `not found by id ${err}` });
+        return res.status(400).json({
+          success: false,
+          message: "Password is required",
+        });
       }
-      res.status(200).json({ success: true, message: "mail checked" });
     } else {
-      res.status(303).json({ success: false, message: "check your mail" });
+      return res.status(404).json({
+        success: false,
+        message: "Email not found",
+      });
     }
   } catch (err) {
-    res.status(500).json({ success: false, message: `not found by ${err}` });
+    res.status(500).json({
+      success: false,
+      message: `Error: ${err.message}`,
+    });
   }
 };

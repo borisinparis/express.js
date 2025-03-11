@@ -1,14 +1,14 @@
 import { Users } from "../../models/users.model.js";
 
 export const DeleteUserController = async (req, res) => {
-  const { email } = req.body;
+  const { phoneNumber } = req.body;
   try {
-    const deleteUser = await Users.deleteOne(email);
+    const deleteUser = await Users.deleteMany({ phoneNumber: phoneNumber });
     res
       .status(200)
       .json({
         success: true,
-        user: createUser,
+        user: deleteUser,
       })
       .send();
   } catch (err) {
