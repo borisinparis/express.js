@@ -1,8 +1,8 @@
 import { Categories } from "../../models/categories.model.js";
-export const CreateUserController = async (req, res) => {
+export const CreateCategoryController = async (req, res) => {
   const { categoryName } = req.body;
   try {
-    const category = await Categories.create(categoryName);
+    const category = await Categories.create({ categoryName: categoryName });
     res.status(200).json(category);
   } catch (err) {
     console.log(err);
