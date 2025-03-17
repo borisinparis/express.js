@@ -7,10 +7,11 @@ import { LoginUserRouter } from "./routers/loginUsers.routers.js";
 import { FoodsRouter } from "./routers/food.routers.js";
 import { AdminRouter } from "./routers/admin.routers.js";
 import { CategoryRouter } from "./routers/category.routers.js";
-
+let isConnected = false;
 dotenv.config();
 
 const connectDb = async () => {
+  if (isConnected) return;
   try {
     await mongoose.connect(process.env.DATABASE_CONNECTION_URL);
     console.log("succesfull connected db");
