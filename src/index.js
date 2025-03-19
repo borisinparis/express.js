@@ -31,7 +31,7 @@ app.use(express.json());
 app.use("/users", UserRouter);
 app.use("/users", LoginUserRouter);
 app.use("/admin", AdminRouter);
-app.use("/Category", CategoryRouter);
+app.use("/category", CategoryRouter);
 app.use("/foods", FoodsRouter);
 app.use("/order", OrderFoodRouter);
 
