@@ -7,6 +7,7 @@ import { LoginUserRouter } from "./routers/loginUsers.routers.js";
 import { FoodsRouter } from "./routers/food.routers.js";
 import { AdminRouter } from "./routers/admin.routers.js";
 import { CategoryRouter } from "./routers/category.routers.js";
+import { OrderFoodRouter } from "./routers/order.routers.js";
 let isConnected = false;
 dotenv.config();
 
@@ -29,10 +30,10 @@ app.use(express.json());
 
 app.use("/users", UserRouter);
 app.use("/users", LoginUserRouter);
-app.use("/food", FoodsRouter);
 app.use("/admin", AdminRouter);
 app.use("/Category", CategoryRouter);
 app.use("/foods", FoodsRouter);
+app.use("/order", OrderFoodRouter);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

@@ -1,14 +1,17 @@
 import { Food } from "../../models/food.model.js";
 
 export const DeleteFoodController = async (req, res) => {
-  const { _id } = req.body;
+  const { id } = req.params;
   try {
-    const DeleteFood = await Food.deleteOne(_id);
+    console.log(id);
+    const deleteFood = await Food.findByIdAndDelete(id);
+
+    console.log(deleteFood);
     res
       .status(200)
       .json({
         success: true,
-        Food: DeleteFood,
+        food: deleteFood,
       })
       .send();
   } catch (err) {

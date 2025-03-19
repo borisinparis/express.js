@@ -7,5 +7,5 @@ export const FoodsRouter = express.Router();
 
 FoodsRouter.get("", GetFoodController);
 FoodsRouter.post("", CreateFoodController);
-FoodsRouter.patch("/:id", UpdateFoodController);
-FoodsRouter.delete(":id", DeleteFoodController);
+FoodsRouter.patch(":id", UpdateFoodController);
+FoodsRouter.delete("/:id", DeleteFoodController);

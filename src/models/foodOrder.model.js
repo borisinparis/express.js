@@ -12,5 +12,6 @@ const foodOrderSchema = new mongoose.Schema({
     enum: ["PENDING", "CANCELLED", "DELIVERED"],
     require: true,
   },
+  category: { type: mongoose.Types.ObjectId, ref: "category" },
 });
-export const Users = mongoose.model("foodOrder", foodOrderSchema);
+export const FoodOrder = mongoose.model("foodOrder", foodOrderSchema);
