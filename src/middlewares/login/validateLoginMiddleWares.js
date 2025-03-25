@@ -38,6 +38,7 @@ export const validateLogin = async (req, res, next) => {
           return res.status(200).json({
             success: true,
             user: userFound,
+            token: token,
           });
         } else {
           return res.status(401).json({

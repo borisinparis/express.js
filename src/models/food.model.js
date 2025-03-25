@@ -7,6 +7,6 @@ const foodSchema = new mongoose.Schema({
   price: { type: String, require: true },
   ingredients: { type: String, require: true },
   category: { type: mongoose.Types.ObjectId, ref: "categories" },
-  image: { type: String, require: false },
+  image: { type: String, require: true },
 });
 export const Food = mongoose.model("foods", foodSchema);
