@@ -1,5 +1,7 @@
 import express from "express";
-import { OrderController } from "../controller/order/CreateOrder.controller.js";
+import { CreateOrderController } from "../controller/order/CreateOrder.controller.js";
+import { GetFoodOrderController } from "../controller/order/GetOrder.controller.js";
 export const OrderFoodRouter = express.Router();
 
-OrderFoodRouter.post("", OrderController);
+OrderFoodRouter.post("", CreateOrderController);
+OrderFoodRouter.get("", GetFoodOrderController);

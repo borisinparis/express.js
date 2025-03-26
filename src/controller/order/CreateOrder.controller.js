@@ -1,6 +1,6 @@
 import { FoodOrder } from "../../models/foodOrder.model.js";
 
-export const OrderController = async (req, res) => {
+export const CreateOrderController = async (req, res) => {
   const { totalPrice, foodOrderItems, status, user } = req.body;
   try {
     const foodOrder = new FoodOrder({
