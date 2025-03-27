@@ -4,9 +4,9 @@ export const GetFoodOrderController = async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const orderFood = await FoodOrder.find({ user: userId }).populate(
-      "foodOrder"
-    );
+    const orderFood = await FoodOrder.find({ user: userId })
+      .populate("foodOrderItems")
+      .execPopulate();
 
     if (!orderFood || orderFood.length === 0) {
       return res.status(404).json({ message: "No orders found" });

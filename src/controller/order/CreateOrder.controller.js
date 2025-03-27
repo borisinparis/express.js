@@ -2,10 +2,14 @@ import { FoodOrder } from "../../models/foodOrder.model.js";
 
 export const CreateOrderController = async (req, res) => {
   const { totalPrice, foodOrderItems, status, user } = req.body;
+  const formattedFoodOrderItems = foodOrderItems.map((item) => ({
+    food: mongoose.Types.ObjectId(item.food),
+    quantity: item.quantity,
+  }));
   try {
     const foodOrder = new FoodOrder({
       totalPrice,
-      foodOrderItems,
+      foodOrderItems: formattedFoodOrderItems,
       status,
       user,
     });
